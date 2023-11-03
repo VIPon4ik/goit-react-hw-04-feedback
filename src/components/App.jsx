@@ -28,7 +28,7 @@ export class App extends Component {
 
     const total = this.countTotalFeedback();
 
-    return (good / total * 100).toFixed(0);
+    return Number((good / total * 100).toFixed(0));
   }
 
   render() {

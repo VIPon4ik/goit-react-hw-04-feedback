@@ -1,6 +1,7 @@
 import { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Notification } from 'components/Notification/Notification';
+import { StatisticList } from './Statistics.styled';
 
 export class Statistics extends Component {
   static propTypes = {
@@ -13,13 +14,12 @@ export class Statistics extends Component {
 
   render() {
     const { good, neutral, bad, total, positivePercentage } = this.props;
-
     return (
       <div>
         {total !== 0 ? (
           <div>
             <h2>Statistics</h2>
-            <ul>
+            <StatisticList>
               <li>
                 <p>Good: {good}</p>
               </li>
@@ -37,7 +37,7 @@ export class Statistics extends Component {
                   <p>Positive feedback: {positivePercentage} %</p>
                 </li>
               )}
-            </ul>
+            </StatisticList>
           </div>
         ) : (
           <Notification />

@@ -5,28 +5,23 @@ import { ButtonList, Button } from './FeedbackOptions.styled';
 export class FeedbackOptions extends Component {
   static propTypes = {
     onLeaveFeedback: PropTypes.func.isRequired,
+    options: PropTypes.arrayOf(PropTypes.string).isRequired,
   };
 
   render() {
-    const { onLeaveFeedback } = this.props;
+    const { onLeaveFeedback, options } = this.props;
 
     return (
       <ButtonList>
-        <li>
-          <Button type="button" name="good" onClick={onLeaveFeedback}>
-            Good
-          </Button>
-        </li>
-        <li>
-          <Button type="button" name="neutral" onClick={onLeaveFeedback}>
-            Neutral
-          </Button>
-        </li>
-        <li>
-          <Button type="button" name="bad" onClick={onLeaveFeedback}>
-            Bad
-          </Button>
-        </li>
+        {options.map(option => {
+          return (
+            <li key={option}>
+              <Button type="button" name={option} onClick={onLeaveFeedback}>
+                {option}
+              </Button>
+            </li>
+          );
+        })}
       </ButtonList>
     );
   }

@@ -1,4 +1,4 @@
-import { Component, useState } from 'react';
+import { useState } from 'react';
 import { Section } from './Section/Section';
 import { FeedbackOptions } from './FeedbackOptions/FeedbackOptions';
 import { Statistics } from './Statistics/Statistics';
@@ -20,21 +20,19 @@ export const App = () => {
     }));
   };
 
-  const countTotalFeedback = () => {
-    const { good, neutral, bad } = feedback;
+  const countTotalFeedback = (good, neutral, bad) => {
     return good + neutral + bad;
   };
 
-  const countPositiveFeedbackPercentage = () => {
-    const { good } = feedback;
+  const countPositiveFeedbackPercentage = (good, total) => {
     if (good === 0) {
       return;
     }
 
-    const total = countTotalFeedback();
-
     return Math.floor((good / total) * 100);
   };
+
+  const { good, neutral, bad } = feedback;
 
   return (
     <div
@@ -53,11 +51,11 @@ export const App = () => {
           onLeaveFeedback={handleFeedback}
         />
         <Statistics
-          good={feedback.good}
-          neutral={feedback.neutral}
-          bad={feedback.bad}
-          total={countTotalFeedback()}
-          positivePercentage={countPositiveFeedbackPercentage()}
+          good={good}
+          neutral={neutral}
+          bad={bad}
+          total={countTotalFeedback(good, neutral, bad)}
+          positivePercentage={countPositiveFeedbackPercentage(good, countTotalFeedback(good, neutral, bad))}
         />
       </Section>
     </div>

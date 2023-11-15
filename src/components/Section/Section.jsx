@@ -1,24 +1,19 @@
-import { Component } from "react";
-import PropTypes from "prop-types";
+import PropTypes from 'prop-types';
 
-export class Section extends Component {
-  static defaultProps = {
-    title: "Please leave a feedback"
-  }
+import React from 'react';
 
-  static propTypes = {
-    title: PropTypes.string,
-    children: PropTypes.node,
-  }
+export const Section = ({ title = 'Please leave a feedback', children }) => {
+  return (
+    <section>
+      <h1>{title}</h1>
+      {children}
+    </section>
+  );
+};
 
-  render() {
-    const { title, children } = this.props;
+Section.propTypes = {
+  title: PropTypes.string,
+  children: PropTypes.node,
+};
 
-    return(
-      <section>
-        <h1>{title}</h1>
-        { children }
-      </section>
-    )
-  }
-}
+export default Section;
